@@ -1,6 +1,7 @@
 package br.com.julianolopes.marcianoapp
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -10,12 +11,19 @@ class RespostaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resposta)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val answerTextView = findViewById<TextView>(R.id.answerTextView)
 
-        // Pega a resposta do Intent
         val marcianoResponse = intent.getStringExtra("MARCIANO_RESPONSE")
-
-        // Exibe a resposta
         answerTextView.text = marcianoResponse
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

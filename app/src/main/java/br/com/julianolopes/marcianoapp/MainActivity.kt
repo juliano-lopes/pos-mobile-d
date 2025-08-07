@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val messageEditText = findViewById<EditText>(R.id.messageEditText)
         val sendButton = findViewById<Button>(R.id.sendButton)
 
@@ -39,4 +38,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    
 }
