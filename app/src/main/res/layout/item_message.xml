@@ -3,8 +3,8 @@
     android:id="@+id/messageTextView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
     android:background="?android:attr/selectableItemBackground"
     android:padding="8dp"
-    android:textSize="16sp"
-    android:text="Mensagem de exemplo"
-    android:layout_marginVertical="4dp"/>
+    android:text=""
+    android:textSize="16sp" />

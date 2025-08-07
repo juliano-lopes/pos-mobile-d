@@ -5,23 +5,24 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private val messagesList = mutableListOf<String>()
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageEditText: EditText
     private lateinit var marciano: MarcianoAvancado
-
+    private lateinit var messagesRecyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         messageEditText = findViewById(R.id.messageEditText)
         val sendButton = findViewById<Button>(R.id.sendButton)
-        val messagesRecyclerView = findViewById<RecyclerView>(R.id.messagesRecyclerView)
+        messagesRecyclerView = findViewById(R.id.messagesRecyclerView)
 
 
         // Configure o RecyclerView
@@ -44,6 +45,9 @@ class MainActivity : AppCompatActivity() {
             val userMessage = messageEditText.text.toString()
             if (userMessage.isNotBlank()) {
                 sendMessage(userMessage, true)
+            } else {
+                Toast.makeText(this, "Por favor, digite uma pergunta.", Toast.LENGTH_SHORT).show()
+
             }
         }
     }
@@ -53,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         if (isNew) {
             messagesList.add(message)
             messageAdapter.notifyItemInserted(messagesList.size - 1)
+            if (messagesRecyclerView.contentDescription.isNotEmpty()) {
+                messagesRecyclerView.contentDescription = ""
+            }
+
+
         }
 
         val marcianoResponse = marciano.responda(message)
